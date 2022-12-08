@@ -15,9 +15,17 @@ resource "aws_default_subnet" "default_az1" {
 }
 
 resource "aws_security_group" "ec2_security_group" {
-  name = "ec2 security gruop"
+  name = "ec2 security group"
   description = "ec2 security group"
   vpc_id = aws_default_vpc.default_vpc.id
+
+  ingress {
+    description = "https access"
+    from_port = 443
+    to_port = 433
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
 
   ingress {
     description = "http access"
@@ -74,8 +82,4 @@ resource "aws_instance" "ec2_instance" {
   tags = {
     Name = "GR-RESQ-UI"
   }
-}
-
-output "public_ipv4_address" {
-  value = aws_instance.ec2_instance.public_ip
 }
