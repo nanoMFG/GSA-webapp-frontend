@@ -1,8 +1,3 @@
-provider "aws" {
-    region = "us-east-1"
-    profile = "terraform"
-}
-
 resource "aws_default_vpc" "default_vpc" {
   tags = {
     "Name" = "default vpc"
