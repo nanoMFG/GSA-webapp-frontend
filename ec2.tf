@@ -14,7 +14,7 @@ resource "aws_default_subnet" "default_az1" {
   }
 }
 
-data "aws_security_group" "ec2_security_group" {
+data "aws_security_group" "selected" {
   id = "sg-0a939df5a2350d9f5"
 }
 
@@ -38,7 +38,7 @@ resource "aws_instance" "ec2_instance" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   subnet_id = aws_default_subnet.default_az1.id
-  vpc_security_group_ids = [ aws_security_group.ec2_security_group.id ]
+  vpc_security_group_ids = [ aws_security_group ]
   key_name = "ec2-key-pair"
   user_data = file("deploy.sh")
 
