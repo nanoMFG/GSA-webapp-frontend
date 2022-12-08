@@ -1,9 +1,3 @@
-resource "aws_default_vpc" "default_vpc" {
-  tags = {
-    "Name" = "default vpc"
-  }
-}
-
 data "aws_availability_zones" "available_zones" {}
 
 resource "aws_default_subnet" "default_az1" {
@@ -12,10 +6,6 @@ resource "aws_default_subnet" "default_az1" {
   tags = {
     Name = "default subet"
   }
-}
-
-data "aws_security_group" "selected" {
-  id = "sg-0a939df5a2350d9f5"
 }
 
 data "aws_ami" "ubuntu" {
@@ -38,7 +28,7 @@ resource "aws_instance" "ec2_instance" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   subnet_id = aws_default_subnet.default_az1.id
-  vpc_security_group_ids = [ aws_security_group.selected.id ]
+  vpc_security_group_ids = [ "sg-0a939df5a2350d9f5" ]
   key_name = "ec2-key-pair"
   user_data = file("deploy.sh")
 
