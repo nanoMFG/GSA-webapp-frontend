@@ -1,4 +1,4 @@
-name: "test deployment"
+name: "Deploy"
 
 on:
   workflow_dispatch: # manual trigger
