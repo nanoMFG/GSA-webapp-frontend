@@ -40,7 +40,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-          rm -rf .terraform
+          ls
           terraform init
 
       - name: Upload terraform.tfstate
