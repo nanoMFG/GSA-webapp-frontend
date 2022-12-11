@@ -1,4 +1,5 @@
 #!/bin/bash
-touch a
-touch b
-touch c
+git clone https://github.com/nanoMFG/GSA-webapp-frontend /application
+cd /application
+npm init
+npm start
