@@ -51,7 +51,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve
+        run: ls && terraform apply -auto-approve
 
       - name: Upload terraform.tfstate
         uses: keithweaver/aws-s3-github-action@v1.0.0
