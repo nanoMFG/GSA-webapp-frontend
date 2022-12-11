@@ -62,7 +62,8 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: us-east-1
-
+        continue-on-error: true
+        
       - name: Terraform Apply
         id: apply
         run: terraform apply -auto-approve
