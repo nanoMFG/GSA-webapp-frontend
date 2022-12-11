@@ -30,7 +30,11 @@ resource "aws_instance" "ec2_instance" {
   subnet_id = aws_default_subnet.default_az1.id
   vpc_security_group_ids = [ "sg-0a939df5a2350d9f5" ]
   key_name = "ec2-key-pair"
-  user_data = file("deploy.sh")
+  user_data = <<-EOF
+  #!/bin/bash
+  git clone https://github.com/lee0916jh/GSA-webapp-frontend.git /application
+  bash /application/deploy.sh
+  EOF
 
   tags = {
     Name = "GR-RESQ-UI"
